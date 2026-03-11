@@ -1,0 +1,285 @@
+/* --- ESTILOS GENERALES --- */
+* {
+    box-sizing: border-box; /* Evita que los paddings rompan el ancho de la pantalla */
+}
+
+body {
+    margin: 0;
+    padding: 0; /* Quitamos el padding aquí */
+    font-family: 'Pixelify Sans', sans-serif;
+    background: #ffe4ef; 
+    color: #cc7093;
+    /* Quitamos display: flex del body para evitar conflictos entre páginas */
+}
+
+.page {
+    display: none;
+    width: 100%;
+    min-height: 100vh; /* Asegura que la página siempre mida al menos el 100% de tu pantalla */
+}
+
+.page.active {
+    display: flex; /* Cada página activa funciona como un contenedor que centra su contenido */
+    flex-direction: column;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.content {
+    margin: auto; /* Esta es la magia: centra el contenido vertical y horizontalmente */
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* --- PÁGINA 1: TÍTULO ANIMADO --- */
+h1 {
+    min-height: 60px; /* Espacio reservado para que no salte al aparecer el texto */
+    color: #cc7093;
+    font-size: 3rem;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+/* Cursor parpadeante */
+.cursor {
+    display: inline-block;
+    color: #cc7093;
+    font-weight: bold;
+    animation: blink 1s step-end infinite;
+}
+
+/* --- TEXTOS GENERALES (Páginas 2 y 3) --- */
+h2 {
+    color: #a84c71;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+}
+
+p {
+    font-size: 1.3rem;
+    color: #8f3d5c;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+/* --- BOTONES --- */
+button {
+    background-color: #a84c71;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 1.2rem;
+    border-radius: 8px; /* Bordes ligeramente redondeados como en tu imagen */
+    cursor: pointer;
+    margin-top: 20px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+button:hover {
+    background-color: #8f3d5c;
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: #d896b0; /* Un tono más claro para diferenciarlo */
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #c77a98;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* --- ANIMACIÓN DE CARGA (Página 2) --- */
+.loader {
+    border: 6px solid #f9cce0;
+    border-top: 6px solid #a84c71;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px auto;
+}
+
+/* --- MINI CARTITAS (Página 3) --- */
+.mini-cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.mini-card {
+    background-color: #fff0f5; /* Un blanco rosado */
+    border: 3px dashed #cc7093;
+    border-radius: 8px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+    background-size: cover;
+    background-position: center;
+    font-size: 1.2rem;
+    color: #a84c71;
+    font-weight: bold;
+}
+
+.mini-card:hover {
+    transform: translateY(-5px);
+    background-color: #fde6ef;
+}
+
+/* --- KEYFRAMES (Animaciones CSS) --- */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* --- ESTILOS DE LA PÁGINA 3 (CARTA Y SOBRES) --- */
+.content-carta {
+    margin: auto; /* Para centrar la carta globalmente */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px; /* Margen superior e inferior para no chocar con los bordes de la pantalla */
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Efecto de papel antiguo */
+.paper-letter {
+    background-color: #f4ecd8; 
+    background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+    width: 100%; /* Se adapta al ancho del celular */
+    max-width: 500px;
+    padding: 30px 20px; /* Un poco menos de padding lateral para móviles */
+    box-shadow: 2px 5px 15px rgba(0,0,0,0.15);
+    border-radius: 4px 12px 3px 15px; 
+    margin-bottom: 20px;
+}
+
+.paper-letter p {
+    font-family: 'Caveat', cursive;
+    font-size: 1.5rem; /* Tamaño de letra ideal para que el texto largo no abarque tanto espacio */
+    color: #5a4f40; 
+    text-align: left;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    word-wrap: break-word; /* Si hay una palabra muy larga, la corta para que no rompa la hoja */
+}
+
+.paper-letter .signature {
+    text-align: right;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+/* Texto intermedio */
+.needs-more {
+    font-family: 'Pixelify Sans', sans-serif;
+    color: #a84c71;
+    font-size: 1.5rem;
+    margin: 15px 0 25px 0;
+    font-weight: normal;
+}
+
+/* Contenedor de los sobres */
+.envelopes-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Permite que bajen a otra línea si la pantalla es pequeña */
+}
+
+.envelope-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: 90px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+}
+
+.envelope-wrapper:hover {
+    transform: translateY(-5px);
+}
+
+.envelope-icon {
+    width: 60px;
+    height: auto;
+    margin-bottom: 5px;
+}
+
+.envelope-wrapper span {
+    font-family: 'Pixelify Sans', sans-serif;
+    color: #a84c71;
+    font-size: 1rem;
+}
+
+/* --- ESTILOS DEL MODAL PARA IMÁGENES FLOTANTES --- */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro semitransparente */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex; /* Muestra el modal y centra el contenido */
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 85vh; /* Evita que la foto sea más alta que la pantalla */
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    border: 6px solid #fff; /* Borde tipo foto polaroid */
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: sans-serif; /* Usamos sans-serif para que la X sea clara */
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #cc7093;
+}
